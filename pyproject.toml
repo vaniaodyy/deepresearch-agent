@@ -1,0 +1,68 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "deepresearch-agent"
+version = "0.1.0"
+description = "Autonomous multi-source research agent powered by MiMo"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "vaniaodyy", email = "vanianaody@gmail.com" }
+]
+keywords = ["ai", "research", "agent", "autonomous", "mimo", "llm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.24.0",
+    "httpx>=0.25.0",
+    "pydantic>=2.5.0",
+    "aiosqlite>=0.19.0",
+    "ddgs>=9.0.0",
+    "arxiv>=2.1.0",
+    "praw>=7.7.0",
+    "python-telegram-bot>=20.7",
+    "markdownify>=0.11.0",
+    "rich>=13.7.0",
+    "typer>=0.9.0",
+    "pyyaml>=6.0",
+    "jinja2>=3.1.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+
+[project.scripts]
+deepresearch = "deepresearch.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/vaniaodyy/deepresearch-agent"
+Repository = "https://github.com/vaniaodyy/deepresearch-agent"
+Issues = "https://github.com/vaniaodyy/deepresearch-agent/issues"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

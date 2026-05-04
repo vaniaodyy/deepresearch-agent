@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - LLM_ENDPOINT=${LLM_ENDPOINT:-https://api.mimo.xiaomi.com/v1/chat/completions}
+      - LLM_API_KEY=${LLM_API_KEY}
+      - LLM_MODEL=${LLM_MODEL:-mimo-7b}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    
+  bot:
+    build: .
+    command: python -m deepresearch.telegram_bot
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - LLM_ENDPOINT=${LLM_ENDPOINT:-https://api.mimo.xiaomi.com/v1/chat/completions}
+      - LLM_API_KEY=${LLM_API_KEY}
+      - LLM_MODEL=${LLM_MODEL:-mimo-7b}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    profiles:
+      - telegram
+
+volumes:
+  data:
