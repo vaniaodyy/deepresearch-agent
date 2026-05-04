@@ -7,22 +7,10 @@ import logging
 from datetime import datetime
 from typing import Any
 
-from pydantic import BaseModel
-
+from deepresearch.models import Source
 from deepresearch.sources.web.search import WebSearcher
 
 logger = logging.getLogger(__name__)
-
-
-class Source(BaseModel):
-    """A research source."""
-    url: str
-    title: str
-    snippet: str
-    content: str | None = None
-    source_type: str  # web, arxiv, reddit, github, news
-    confidence: float = 0.0
-    retrieved_at: datetime = datetime.now()
 
 
 class ResearcherAgent:
