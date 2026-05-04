@@ -181,7 +181,7 @@ class ResearchEngine:
                 task.created_at.isoformat(),
                 task.status,
                 json.dumps(task.plan),
-                json.dumps(task.sources),
+                json.dumps([s.model_dump(mode='json') if hasattr(s, 'model_dump') else s for s in task.sources]),
                 json.dumps(task.analysis),
                 task.report,
                 task.confidence_score,

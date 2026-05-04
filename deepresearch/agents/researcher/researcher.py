@@ -74,7 +74,7 @@ class ResearcherAgent:
         
         logger.info(f"Found {len(sources)} unique sources")
         
-        return [source.model_dump() for source in sources]
+        return [source.model_dump(mode='json') for source in sources]
     
     async def _search_source(self, query: str, source_type: str) -> list[Source]:
         """Search a specific source type."""
