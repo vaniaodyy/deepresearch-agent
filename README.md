@@ -24,46 +24,34 @@ DeepResearch Agent is a **fully autonomous research system** that plans, searche
 
 ## 🏗️ Architecture
 
+```mermaid
+flowchart TD
+    A[User Input] --> B[Planner Agent]
+    B --> C[Researcher Agent]
+    C --> D[Analyst Agent]
+    D --> E[Writer Agent]
+    E --> F{Quality Check}
+    F -->|Pass| G[Research Report]
+    F -->|Revise| E
+
+    subgraph Sources
+        S1[Web Search]
+        S2[arXiv Papers]
+        S3[GitHub Repos]
+        S4[News Articles]
+        S5[Reddit Discussions]
+    end
+
+    C --> Sources
 ```
-User Input: "Research about AI in Indonesia"
-         ↓
-┌─────────────────────────────────────────┐
-│         🧠 PLANNER AGENT               │
-│  • Analyzes topic                      │
-│  • Creates sub-queries                 │
-│  • Identifies best sources             │
-└─────────────────┬───────────────────────┘
-                  ↓
-┌─────────────────────────────────────────┐
-│         🔍 RESEARCHER AGENT            │
-│  • Executes 20+ searches               │
-│  • Multi-source parallel               │
-│  • Content extraction                  │
-└─────────────────┬───────────────────────┘
-                  ↓
-┌─────────────────────────────────────────┐
-│         📊 ANALYST AGENT               │
-│  • Cross-references sources            │
-│  • Finds patterns                      │
-│  • Calculates confidence               │
-└─────────────────┬───────────────────────┘
-                  ↓
-┌─────────────────────────────────────────┐
-│         ✍️ WRITER AGENT                │
-│  • Generates report                    │
-│  • Structures findings                 │
-│  • Includes citations                  │
-└─────────────────┬───────────────────────┘
-                  ↓
-┌─────────────────────────────────────────┐
-│         🔍 CRITIC AGENT                │
-│  • Reviews quality                     │
-│  • Suggests improvements               │
-│  • Triggers revision if needed         │
-└─────────────────────────────────────────┘
-                  ↓
-    📄 Comprehensive Research Report
-```
+
+**How it works:**
+
+1. **Planner** breaks down your topic into targeted sub-queries
+2. **Researcher** executes parallel searches across multiple sources
+3. **Analyst** cross-references findings and calculates confidence
+4. **Writer** generates a structured report with citations
+5. **Critic** reviews quality — if issues found, report gets revised
 
 ## 🛠️ Installation
 
